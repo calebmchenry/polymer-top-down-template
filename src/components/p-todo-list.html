@@ -1,0 +1,34 @@
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+
+<dom-module id="p-todo-list">
+	<template>
+		<style></style>
+		<div class="box-shadow">
+			<h1>TODO:</h1>
+			<input id="todoInput" type="text">
+			<button on-click="_addTodo">Add</button>
+			<ul>
+				<template is="dom-repeat" items="[[_todos]]">
+					<li>[[item]]</li>
+				</template>
+			</ul>
+		</div>
+	</template>
+	<script>
+		Polymer({
+			is: 'p-todo-list',
+			properties: {
+				_todos: {
+					type: Array,
+					value: () => {
+						return [];
+					}
+				}
+			},
+			_addTodo() {
+				this.push('_todos', this.$.todoInput.value);
+				this.$.todoInput.value = '';
+			}
+		});
+	</script>
+</dom-module>

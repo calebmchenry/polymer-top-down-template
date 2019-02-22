@@ -1,0 +1,42 @@
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+
+<link rel="import" href="../bower_components/app-route/app-route.html" />
+<link rel="import" href="../bower_components/app-route/app-location.html" />
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html" />
+
+<link rel="import" href="./pages/chores/p-chores-page.html" />
+<link rel="import" href="./pages/chore-details/p-chore-details-page.html" />
+<link rel="import" href="./pages/people/p-people-page.html" />
+
+<dom-module id="p-app">
+  <template>
+    <style>
+    </style>
+    <header>
+      <a href="#/todo">Todo</a>
+      <a href="#/color/colors/red">Red</a>
+      <a href="#/color/colors/green">Green</a>
+      <a href="#/color/colors/blue">Blue</a>
+    </header>
+    <main>
+      <iron-pages attr-for-selected="name" selected="[[data.page]]">
+        <p-todo-page class="page" name="todo"></p-todo-page>
+      </iron-pages>
+    </main>
+
+    <app-location route="{{ route }}" use-hash-as-path></app-location>
+
+    <app-route route="{{ route }}" pattern="/:page" data="{{ data }}" tail="{{ tail }}"></app-route>
+  </template>
+  <script>
+    Polymer({
+      is: 'p-app',
+
+      properties: {
+        data: Object,
+        route: Object,
+        tail: Object
+      }
+    });
+  </script>
+</dom-module>
